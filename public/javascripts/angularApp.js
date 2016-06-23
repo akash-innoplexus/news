@@ -60,9 +60,7 @@ app.config([
             return posts.getAll();
           }]
         }
-    });
-
-    .state('posts', {
+    }).state('posts', {
       url: '/posts/{id}',
       templateUrl: '/posts.html',
       controller: 'PostsCtrl',
@@ -82,14 +80,14 @@ app.controller('MainCtrl', [
   'posts',
   function($scope, posts){
     // $scope.test = 'Hello, World!';
-
-    $scope.posts = [
-      {title: 'post 1', upvotes: 5},
-      {title: 'post 2', upvotes: 2},
-      {title: 'post 3', upvotes: 15},
-      {title: 'post 4', upvotes: 9},
-      {title: 'post 5', upvotes: 4}
-    ];
+    //
+    // $scope.posts = [
+    //   {title: 'post 1', upvotes: 5},
+    //   {title: 'post 2', upvotes: 2},
+    //   {title: 'post 3', upvotes: 15},
+    //   {title: 'post 4', upvotes: 9},
+    //   {title: 'post 5', upvotes: 4}
+    // ];
 
     $scope.posts = posts.posts;
 
@@ -131,13 +129,13 @@ app.controller('PostsCtrl', [
   //function($scope, $stateParams, posts){
   function($scope, posts, post){
     $scope.post = post; //posts.posts[$stateParams.id];
-  }
+
 
   $scope.addComment = function(){
     if($scope.body === ''){ return; }
     posts.addComment(post._id, {
-      body: $scope.body,
-      author: 'user',
+      'body': $scope.body,
+      'author': 'user',
     }).success(function(comment) {
       $scope.post.comments.push(comment);
     });
@@ -145,9 +143,6 @@ app.controller('PostsCtrl', [
     $scope.incrementUpvotes = function(comment){
       posts.upvoteComment(post, comment);
     };
-
-
-
     // $scope.post.cooments.push({
     //   body: $scope.body,
     //   author: 'user',
@@ -158,4 +153,4 @@ app.controller('PostsCtrl', [
   };
 
 
-]);
+}]);
